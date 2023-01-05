@@ -19,17 +19,23 @@ export default class Model {
                 case (consonants.has(item) && next === '̀'):
                     res.push('e')
                     break
+                // don't add jenkim to vowel
+                case (vowels.has(item) && next === '̀'):
+                    // lowercase[index + 1] = item
+                    break    
                 // TODO: handle names
+
+                // TODO: handle ⲏⲓ
 
                 /* ⲩ cases */
                 // ⲩ follows ⲁ or ⲉ
                 case ((item === 'ⲁ' || item === 'ⲉ') && next === 'ⲩ'):
-                    res.push(vowels.get(item))
+                    original[index] === original[index].toUpperCase() ? res.push(vowels.get(item).toUpperCase()) : res.push(vowels.get(item))
                     res.push('v')
                     return
                 // ⲩ follows ⲟ
                 case (item === 'ⲟ' && next === 'ⲩ'):
-                    res.push('o')
+                    original[index] === original[index].toUpperCase() ? res.push('O') : res.push('o')
                     res.push('u')
                     return
                 // ⲩ is follows ⲁ or ⲉ or ⲟ
@@ -38,7 +44,7 @@ export default class Model {
                 /* consonant cases */
                 // ⲅ makes g sound
                 case (item === 'ⲅ' && next === 'ⲓ'):
-                    res.push('g')
+                    original[index] === original[index].toUpperCase() ? res.push('G') : res.push('g')
                     return
                 // consecutive ⲅ
                 case (item === 'ⲅ' && next === 'ⲅ'):
@@ -48,7 +54,7 @@ export default class Model {
                     return
                 // ϫ makes g sound
                 case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ')):
-                    res.push('g')
+                    original[index] === original[index].toUpperCase() ? res.push('G') : res.push('g')
                     return
                 // ⲃ at the end of word
                 case (item === 'ⲃ' && (!consonants.has(next) && !vowels.has(next))):
@@ -56,7 +62,7 @@ export default class Model {
                     return
                 // ⲭ makes sh sound
                 case (item === 'ⲭ' && (next === 'ⲉ' || next === 'ⲏ')):
-                    res.push('sh')
+                    original[index] === original[index].toUpperCase() ? res.push('Sh') : res.push('sh')
                     return
                 default:
                     console.log(item)
@@ -69,6 +75,13 @@ export default class Model {
         });
 
         // TODO: add dashes for consecutive vowels
+        res.forEach((item, index) => {
+            const next = res[index + 1]
+            if (item.match(/\p{Letter}/gu) && (item === next || (item === 'u' && next === 'o')
+                                                                || (item === 'i' && next === 'e')
+                                                                || (item === 'a' && next === 'e')))
+                res[index] = item + '-'
+        })
         return res.join('')
     }
 }
