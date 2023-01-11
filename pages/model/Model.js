@@ -1,7 +1,28 @@
-import { vowels, consonants } from "./Alphabet";
+import Alphabet from "./Alphabet";
+import {font, consonants, vowels} from "./Alphabet";
 
 export default class Model {
     constructor() {
+        let a = new Alphabet()
+        a.initializeConvert()
+        a.initializeTranslit()
+    }
+
+    convert(text) {
+        const original = text.split('')
+        const swapped = text.split('')
+        let res = []
+        // swap jenkim to after letter
+        original.forEach((item, index) => {
+            if (item === '`') {
+                swapped[index] = original[index + 1]
+                swapped[index + 1] = item
+            }
+        })
+        swapped.forEach((item) => {
+            res.push(font.get(item) || item)
+        })
+        return res.join('')
     }
 
     transliterate(text) {
