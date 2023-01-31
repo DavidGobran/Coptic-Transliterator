@@ -1,11 +1,10 @@
-export const convertController = (model, setCopticUnicode) => {
-    let input = document.getElementById('copticFont').value
-    let output = model.convert(input)
-    setCopticUnicode(output)
-}
-
 export const transliterateController = (model, setCopticText) => {
+    // get input
     let input = document.getElementById('copticUnicode').value
-    let output = model.transliterate(input)
+    // convert to unicode
+    let unicode = model.convert(input)
+    document.getElementById('copticUnicode').value = unicode
+    // transliterate unicode
+    let output = model.transliterate(unicode)
     setCopticText(output)
 }

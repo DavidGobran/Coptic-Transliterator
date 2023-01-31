@@ -1,10 +1,11 @@
-export var font, vowels, consonants
+export var font, vowels, consonants, others
 
 export default class Alphabet {
     constructor() {
         font = new Map()
         vowels = new Map()
         consonants = new Map()
+        others = new Map()
     }
 
     initializeConvert() {
@@ -77,6 +78,8 @@ export default class Alphabet {
         font.set('&', ';')
         font.set('_', '=')
         font.set('¡', '⳪')
+        // numbers
+        font.set('^', 'ⲋ')
     }
 
     initializeTranslit() {
@@ -142,5 +145,9 @@ export default class Alphabet {
         consonants.set('ϭ', 'ch')
         consonants.set('Ϯ', 'Ti')
         consonants.set('ϯ', 'ti')
+
+        others.set('⳪', 'choice')
+        // TODO: rest of numbers
+        others.set('ⲋ', '6')
     }
 }
