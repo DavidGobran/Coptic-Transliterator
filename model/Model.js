@@ -76,7 +76,7 @@ export default class Model {
 
                 // TODO: finish handling names
                 case (item === 'ⲓ' && next === 'ⲱ'):
-                    this.isUppercase(swapped[index]) ? res.push('Y') : res.push('y')
+                    this.isUppercase(swapped[index]) ? res.push('Y') : res.push('i')
                     return
                 /* special vowel cases */
                 // TODO: ⲟⲓ case, requies Greek distinction
@@ -108,7 +108,7 @@ export default class Model {
                     res.push('n')
                     return
                 // ϫ makes g sound
-                case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ' || 
+                case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ' || next === 'ⲡ' || 
                                         (!consonants.has(next) && !vowels.has(next)))):
                     this.isUppercase(swapped[index]) ? res.push('G') : res.push('g')
                     return
@@ -121,7 +121,7 @@ export default class Model {
                     this.isUppercase(swapped[index]) ? res.push('Sh') : res.push('sh')
                     return
                 default:
-                    console.log(item)
+                    // console.log(item)
             }
             // preserve capitalization
             if (this.isUppercase(swapped[index]))

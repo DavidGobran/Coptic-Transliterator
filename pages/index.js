@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import { transliterateController } from './controller/Controller'
-import Model from './model/Model'
+import { transliterateController } from '../controller/Controller'
+import Model from '../model/Model'
 import { useState } from 'react'
 
 export default function Home() {
