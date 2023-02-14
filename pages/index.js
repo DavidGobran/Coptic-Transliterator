@@ -19,7 +19,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1 className={styles.code}>Coptic Transliterator</h1>
-        <br></br>
+        <label className={styles.title}>Enter Coptic Unicode or paste text from <a href="http://tasbeha.org/hymn_library"
+                                                                                    target="_blank"
+                                                                                    className={styles.link}>Tasbeha.org</a></label>
         {/* <div class="textAreaColumn"> */}
           <textarea
             id="copticUnicode"

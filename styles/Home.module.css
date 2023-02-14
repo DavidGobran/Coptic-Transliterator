@@ -28,6 +28,10 @@
   width: 75%;
 }
 
+.link {
+  color: blue
+}
+
 .description a {
   display: flex;
   justify-content: center;
