@@ -13,12 +13,12 @@ export default function Home() {
     <>
       <Head>
         <title>Coptic Transliterator</title>
-        <meta name="description" content="transliterate coptic te" />
+        <meta name="description" content="transliterate coptic to english" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <h1 className={styles.code}>Coptic Transliterator</h1>
+        <h1 className={styles.title}>Coptic Transliterator</h1>
         <label className={styles.title}>Enter Coptic Unicode or paste text from <a href="http://tasbeha.org/hymn_library"
                                                                                     target="_blank"
                                                                                     rel="noopener noreferrer"
