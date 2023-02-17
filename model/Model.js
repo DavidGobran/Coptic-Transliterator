@@ -109,7 +109,7 @@ export default class Model {
                     return
                 // ϫ makes g sound
                 case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ' || next === 'ⲡ' || next === 'ⲣ' || next === 'ⲫ'
-                                        (!consonants.has(next) && !vowels.has(next)))):
+                                       || (!consonants.has(next) && !vowels.has(next)))):
                     this.isUppercase(swapped[index]) ? res.push('G') : res.push('g')
                     return
                 // ⲃ at the end of word
