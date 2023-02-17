@@ -34,10 +34,9 @@ export default class Model {
         const original = text.split('')
         const swapped = text.split('')
         let res = []
-        // TODO: handle abbreviations
-        // swap jenkim to after letter
+        // swap jenkim and abbreviation line to after letter
         original.forEach((item, index) => {
-            if (item === '`') {
+            if (item === '`' || item === '=') {
                 swapped[index] = original[index + 1]
                 swapped[index + 1] = item
             }
@@ -59,6 +58,7 @@ export default class Model {
                 swapped[index - 1] = item
             }
         })
+        // swapped = this.removeAbbreviations(swapped.join('').toLowerCase())
         const lowercase = swapped.join('').toLowerCase().split('')
         let res = []
         lowercase.forEach((item, index) => {
@@ -108,7 +108,7 @@ export default class Model {
                     res.push('n')
                     return
                 // ϫ makes g sound
-                case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ' || next === 'ⲡ' || 
+                case (item === 'ϫ' && (next === 'ⲁ' || next === 'ⲟ' || next === 'ⲱ' || next === 'ⲡ' || next === 'ⲣ' || next === 'ⲫ'
                                         (!consonants.has(next) && !vowels.has(next)))):
                     this.isUppercase(swapped[index]) ? res.push('G') : res.push('g')
                     return
@@ -139,10 +139,30 @@ export default class Model {
                                                 || (item === 'a' && next === 'e')))
                 res[index] = item + '-'
         })
-        return res.join('')
+        return this.fixAbbreviations(res.join(''))
     }
 
     /* helper functions */
+    // removeAbbreviations(text) {
+    //     let r1 = text.replaceAll('ⲏ̅ⲥ̅', 'ⲏⲥⲟⲩⲥ')
+    //     let r2 = r1.replaceAll('ⲟ̅ⲥ̅', 'ϭⲟⲓⲥ')
+    //     let r3 = r2.replaceAll('ⲁ̅ⲗ̅', 'ⲁⲗⲗⲏⲗⲟⲩⲓⲁ')
+    //     let r4 = r3.replaceAll('ⲫϯ', 'ⲫⲛⲟⲩϯ')
+    //     let r5 = r4.replaceAll('ⲉ̅ⲑ̅ⲩ̅', 'ⲉⲑⲟⲩⲁⲃ')
+    //     let r6 = r5.replaceAll('ⲭ̅ⲥ̅', 'ⲭⲣⲓⲥⲧⲟⲥ')
+    //     return r6
+    // }
+
+    fixAbbreviations(text) {
+        let r1 = text.replaceAll('k̅s̅', 'ikhristos') // TODO: check this
+        let r2 = r1.replaceAll('o̅s̅', 'choice')
+        let r3 = r2.replaceAll('i̅s̅', 'esoos')
+        let r4 = r3.replaceAll('Fti', 'Efnooti')
+        let r5 = r4.replaceAll('e̅th̅i̅', 'ethouab')
+        let r6 = r5.replaceAll('a̅l̅', 'allelouia')
+        return r6
+    }
+
     isVowel(char) {
         return char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u'
     }
