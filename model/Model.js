@@ -65,8 +65,6 @@ export default class Model {
             const prev = lowercase[index - 1]
             const next = lowercase[index + 1]
             switch (true) {
-                // TODO: ignore abbreviation line
-
                 // add jenkim to consonant
                 case item === '̀':
                     if (consonants.has(next)) {
@@ -78,16 +76,21 @@ export default class Model {
                 case (item === 'ⲓ' && next === 'ⲱ'):
                     this.isUppercase(swapped[index]) ? res.push('Y') : res.push('i')
                     return
+
                 /* special vowel cases */
                 // TODO: ⲟⲓ case, requies Greek distinction
+                
+                // ⲁ,ⲉ cases
+                case (item === 'ⲁ' || item === 'ⲉ'):
+                    this.isUppercase(swapped[index]) ? res.push(vowels.get(item).toUpperCase()) : res.push(vowels.get(item))
+                    if (next === 'ⲩ')
+                        res.push('v')
+                    // if (prev === '̀')
+                    //     res.push('-')
+                    return
                 // ⲏⲓ case
                 case (item === 'ⲏ' && next === 'ⲓ'):
                     res.push('e')
-                    return
-                // ⲩ follows ⲁ or ⲉ
-                case ((item === 'ⲁ' || item === 'ⲉ') && next === 'ⲩ'):
-                    this.isUppercase(swapped[index]) ? res.push(vowels.get(item).toUpperCase()) : res.push(vowels.get(item))
-                    res.push('v')
                     return
                 // ⲩ follows ⲟ
                 case (item === 'ⲟ' && next === 'ⲩ'):
@@ -117,11 +120,11 @@ export default class Model {
                     res.push('b')
                     return
                 // ⲭ makes sh sound
-                case (item === 'ⲭ' && (next === 'ⲉ' || next === 'ⲏ')):
+                case (item === 'ⲭ' && next === 'ⲉ'):
                     this.isUppercase(swapped[index]) ? res.push('Sh') : res.push('sh')
                     return
                 default:
-                    // console.log(item)
+                    console.log('No match: ' + item)
             }
             // preserve capitalization
             if (this.isUppercase(swapped[index]))
