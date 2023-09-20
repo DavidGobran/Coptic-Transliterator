@@ -29,13 +29,12 @@ export default function Home() {
             className={styles.box}
             type="text"
             placeholder="Enter Coptic Here"
-            rows="20"
           />
           <button onClick={() => transliterateController(model, setCopticText)}>Convert</button>
           <textarea
             className={styles.box}
             readOnly={true}
-            rows="20"
+            placeholder="Transliteration will appear here"
             value={copticText ? copticText : ''}
           />
         {/* </div> */}

@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  min-height: 100vh;
+  padding: 0 0.5rem;
+  min-height: 95vh;
 }
 
 .description {
@@ -19,11 +19,10 @@
 }
 
 .title {
-  /* display: inherit; */
-  /* flex-direction: inherit; */
   justify-content: inherit;
   align-items: inherit;
   font-family: var(--font-mono);
+  margin-top: 0px;
 }
 
 .box {
@@ -31,7 +30,7 @@
   flex-direction: inherit;
   justify-content: inherit;
   align-items: inherit;
-  width: 75%;
+  height: calc(33.33vh - 1rem) !important;
 }
 
 .link {
