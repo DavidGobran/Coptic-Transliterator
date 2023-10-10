@@ -2,12 +2,19 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { transliterateController } from '../controller/Controller'
 import Model from '../model/Model'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [model, setModel] = useState(new Model());
   // const [copticUnicode, setCopticUnicode] = useState();
   const [copticText, setCopticText] = useState();
+
+  useEffect(() => {
+    const copticUnicode = document.getElementById('copticUnicode');
+    copticUnicode.addEventListener('input', (e) => {
+      setCopticText(model.transliterate(e.target.value))
+    });
+  })
 
   return (
     <>
@@ -30,7 +37,7 @@ export default function Home() {
             type="text"
             placeholder="Enter Coptic Here"
           />
-          <button onClick={() => transliterateController(model, setCopticText)}>Convert</button>
+          {/* <button onClick={() => transliterateController(model, setCopticText)}>Convert</button> */}
           <textarea
             className={styles.box}
             readOnly={true}
