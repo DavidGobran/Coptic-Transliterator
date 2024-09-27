@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import { Analytics } from '@vercel/analytics/react';
 import styles from '../styles/Home.module.css'
-import { transliterateController } from '../controller/Controller'
 import Model from '../model/Model'
 import { useState, useEffect } from 'react'
 
@@ -21,9 +20,9 @@ export default function Home() {
     <>
       <Head>
         <title>Coptic Transliterator</title>
-        <meta name="description" content="transliterate coptic to english" />
+        <meta name="description" content="Automatically transliterate Coptic to English."/>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/cross.ico" />
       </Head>
       <Analytics />
       <main className={styles.main}>
